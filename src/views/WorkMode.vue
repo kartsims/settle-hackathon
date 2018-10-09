@@ -1,0 +1,83 @@
+<template>
+  <div>
+
+    <div class="menu">
+
+      <h1>ERC20 Whale Watcher</h1>
+
+      <div class="tabs">
+
+        <router-link to="/work/add" class="button">
+          +
+        </router-link>
+        <router-link to="/work" class="tab">
+          Transactions
+        </router-link>
+        <router-link to="/work/accounts" class="tab">
+          Watchlist
+        </router-link>
+      </div>
+
+    </div>
+
+    <router-view/>
+    
+  </div>
+</template>
+
+<script>
+export default {
+}
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style lang="scss" scoped>
+.menu {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+h1 {
+  margin-top: 15px;
+}
+
+.tabs {
+  margin: 15px 0;
+  height: 50px;
+  position: relative;
+  .tab {
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    padding: 0 15px;
+    margin: 0 20px 0 0;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 13px;
+    color: #ffffffc7;
+    &.router-link-exact-active {
+      border-bottom: 2px solid #f6a622;
+    }
+  }
+  .button {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    margin: 0 20px 0 10px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 18px;
+    outline: none;
+    color: #2c3e50;
+    border-radius: 2px;
+    background: #ffffffc7;
+    text-decoration: none;
+    &.router-link-exact-active {
+      background: #f6a622;
+    }
+  }
+}
+</style>
