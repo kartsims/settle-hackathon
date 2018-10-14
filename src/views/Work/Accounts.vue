@@ -4,8 +4,6 @@
     <div class="header">
 
       <span v-if="watchList.length > 1" class="count">
-        <router-link to="/work/add" class="add" style="float: right">Add an account</router-link>
-
         Group by 
         <label>
           <input type="radio" v-model="groupBy" value="token"/>
@@ -15,10 +13,9 @@
           <input type="radio" v-model="groupBy" value="address"/>
           Account
         </label>
-        
       </span>
       
-      <span v-else class="count empty">
+      <span v-else-if="watchList.length === 0" class="count empty">
         No account watched yet
         <br/>
         <br/>

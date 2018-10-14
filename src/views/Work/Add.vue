@@ -19,6 +19,7 @@
       <form @submit.prevent="pickAddress(inputAddress)">
         <input
           v-model="inputAddress"
+          ref="address"
           placeholder="Enter an Ethereum address (0x...)"
         />
         <button type="submit" :class="{disabled: !isValid(inputAddress)}">
@@ -69,10 +70,24 @@ export default {
       this.$store.commit('WATCHLIST_ADD', {
         address,
         tokenAddress: this.token.address,
+        txLoaded: null,
+      })
+      this.$store.dispatch('getTxs', {
+        address,
+        tokenAddress: this.token.address,
       })
       this.$router.push('/work/accounts')
     },
   },
+  watch: {
+    'token.address' (value) {
+      if (value) {
+        this.$nextTick(() => {
+          this.$refs.address.focus()
+        })
+      }
+    },
+  }
 }
 </script>
 

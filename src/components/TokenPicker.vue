@@ -4,7 +4,8 @@
     <div class="search">
       <i class="icon-search"/>
       <input 
-        v-model="query" 
+        v-model="query"
+        ref="query"
         placeholder="Search or select a token from the list below"
       />
     </div>
@@ -43,7 +44,10 @@ export default {
         return token.name.match(regex) || token.ticker.match(regex)
       })
     }
-  }
+  },
+  mounted () {
+    this.$refs.query.focus()
+  },
 }
 </script>
 

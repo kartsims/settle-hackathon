@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import request from 'async-request'
+import request from 'request-promise-native'
 import cheerio from 'cheerio'
 import numeral from 'numeral'
 
@@ -50,7 +50,7 @@ export default {
     async loadItems () {
       try {
         this.loading = true
-        const { body } = await request('https://cors-anywhere.herokuapp.com/https://etherscan.io/token/generic-tokenholders2?a='+ this.token.address + '&s=1.40245398245133E%2b26&p=' + this.currentPage)
+        const body = await request('https://cors-anywhere.herokuapp.com/https://etherscan.io/token/generic-tokenholders2?a='+ this.token.address + '&s=1.40245398245133E%2b26&p=' + this.currentPage)
 
         const $ = await cheerio.load(body)
 
