@@ -4,7 +4,11 @@ import router from './router'
 import store from './store'
 
 require('./assets/fontello/css/fontello.css')
+require('./assets/fontello/css/animation.css')
 require('./assets/stylesheets/main.scss')
+
+import VTooltip from 'v-tooltip'
+Vue.use(VTooltip)
 
 Vue.config.productionTip = false
 

@@ -114,8 +114,12 @@ export default new Vuex.Store({
         })
         console.log('%d txs found', txs.length)
       } catch(e) {
-        console.log('tx retrieval failed')
+        console.log('Tx retrieval failed')
         console.log(e)
+        commit('WATCHLIST_TX_LOADED', {
+          ...payload,
+          value: false,
+        })
       }
     },
   },

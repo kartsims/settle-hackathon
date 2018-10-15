@@ -1,4 +1,8 @@
 
 .icon-search:before { content: '\e800'; } /* '' */
 .icon-remove:before { content: '\e801'; } /* '' */
+.icon-warning:before { content: '\e803'; } /* '' */
+.icon-check-off:before { content: '\f0c8'; } /* '' */
+.icon-spinner:before { content: '\f110'; } /* '' */
+.icon-check-on:before { content: '\f14a'; } /* '' */
 .icon-external:before { content: '\f14c'; } /* '' */

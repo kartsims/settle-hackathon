@@ -1,22 +1,32 @@
+#########################
+# INTEGRATION TO SETTLE #
+#########################
+
+- after loading the page (work and helper modes ONLY)
+  - update tx history
+  - display loading indicator fixed to the top of the page "updating transactions history... 2/15"
+- after loading the page
+  - header banner : "listening to ERC20 transactions..."
+  - spinner
+  - web3 event listener
+  - display current block number
+- "About"
+  - This app has been developed by Simon Tarchichi for Settle.finance. 
+  - Request new features or share your opinion by submitting the form below.
+  - SMALL FORM BOUND TO API
+    
+
 mode helper = 225 de large, hauteur dépend de l'écran
 mode alert = 120 de haut, 275-400 de large
 
 # ACCOUNTS
 
-Table listing accounts
 Button "show all balances"
 When showing balances, help text saying "balances updated at XXX"
-Button "edit"
-Edit form :
-- "remove" button
-- set a name
 
 # TRANSACTIONS
 
 "Waiting for transactions..." + spinner + block number
-List 15 days of txs, all coins
-Checkbox "group by token"
-Selectbox "Select an account"
 
 # CHARTS
 
