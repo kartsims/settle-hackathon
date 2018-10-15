@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
+import About from './views/About.vue'
 import Home from './views/Home.vue'
 import WorkMode from './views/WorkMode.vue'
 import WorkAccounts from './views/Work/Accounts.vue'
@@ -21,6 +23,10 @@ export default new Router({
         {
           path: '',
           component: WorkTx
+        },
+        {
+          path: 'about',
+          component: About
         },
         {
           path: 'accounts',

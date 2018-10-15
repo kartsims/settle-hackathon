@@ -5,7 +5,7 @@
 
     <div class="menu">
 
-      <h1>ERC20 Whale Watcher</h1>
+      <h1 @click="$router.push('/work/about')">ERC20 Whale Watcher</h1>
 
       <div class="tabs">
 
@@ -50,6 +50,10 @@ export default {
 
 h1 {
   margin-top: 15px;
+  cursor: pointer;
+  &:hover {
+    color: #ffffffc2;
+  }
 }
 
 .tabs {
