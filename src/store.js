@@ -64,6 +64,7 @@ export default new Vuex.Store({
   },
   actions: {
     async getTxs({ commit }, payload) {
+      commit('TX_ACCOUNT_REMOVE', payload)
       console.log('getTxs', JSON.stringify(payload, null, 2))
       let txs = []
       let timestamp = +moment().format('X')

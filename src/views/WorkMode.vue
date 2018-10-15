@@ -1,6 +1,8 @@
 <template>
   <div>
 
+    <TxUpdater/>
+
     <div class="menu">
 
       <h1>ERC20 Whale Watcher</h1>
@@ -20,13 +22,20 @@
 
     </div>
 
-    <router-view/>
+    <div class="content">
+      <router-view/>
+    </div>
     
   </div>
 </template>
 
 <script>
+import TxUpdater from '@/components/TxUpdater.vue'
+
 export default {
+  components: {
+    TxUpdater,
+  },
 }
 </script>
 
@@ -36,6 +45,7 @@ export default {
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  margin: 0 10px;
 }
 
 h1 {
@@ -66,7 +76,7 @@ h1 {
     height: 24px;
     line-height: 24px;
     text-align: center;
-    margin: 0 20px 0 10px;
+    margin: 0 20px 0 0;
     cursor: pointer;
     text-decoration: none;
     font-size: 18px;
@@ -79,5 +89,8 @@ h1 {
       background: #f6a622;
     }
   }
+}
+.content {
+  padding: 0 10px 20px;
 }
 </style>
