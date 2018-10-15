@@ -7,14 +7,18 @@
         v-model="query"
         ref="query"
         placeholder="Search or select a token from the list below"
+        @keyup.up="changeIndex(-1)"
+        @keyup.down="changeIndex(1)"
+        @keyup.enter="selectIndex"
       />
     </div>
 
     <div 
-      v-for="token in items"
+      v-for="(token, index) in items"
       :key="token.address"
       @click="$emit('change', token)"
       class="item"
+      :class="{selected: index === selectedIndex}"
     >
       {{ token.name }}
       <span>{{ token.ticker }}</span>
@@ -33,7 +37,8 @@ import { mapState } from 'vuex'
 export default {
   data () {
     return {
-      query: ''
+      query: '',
+      selectedIndex: null,
     }
   },
   computed: {
@@ -47,6 +52,22 @@ export default {
   },
   mounted () {
     this.$refs.query.focus()
+  },
+  watch: {
+    query (value) {
+      this.selectedIndex = value.length === 0 ? null : 0
+    },
+  },
+  methods: {
+    changeIndex(value) {
+      const newIndex = this.selectedIndex + value
+      if (newIndex >= 0 && newIndex < this.items.length) {
+        this.selectedIndex = newIndex
+      }
+    },
+    selectIndex() {
+      this.$emit('change', this.items[this.selectedIndex])
+    },
   },
 }
 </script>
@@ -79,6 +100,10 @@ export default {
     opacity: .5;
   }
   &:hover {
+    color: #fff;
+    background: #2c3e50;
+  }
+  &.selected {
     color: #fff;
     background: #2c3e50;
   }
