@@ -24,20 +24,33 @@
 
     </div>
 
-    <div 
-      v-for="(itemList, group) in items" 
-      :key="groupBy + 'group' + group"
-    >
-      <h3>{{ itemGroupName(group) }}</h3>
-      <ul>
-        <li v-for="item in itemList" :key="groupBy + 'list' + item">
-          <a :href="itemLink(group, item)" target="_blank">
+    <table :class="'grouped-by-' + groupBy">
+      <template v-for="(itemList, group) in items">
+        <tr :key="groupBy + 'grouptitle' + group">
+          <td colspan="10" class="title">
+            {{ itemGroupName(group) }}
+          </td>
+        </tr>
+        <tr 
+          v-for="item in itemList" 
+          :key="groupBy + 'list' + item"
+        >
+          <td class="name">
             {{ itemName(item) }}
-          </a>
-        </li>
-      </ul>
-
-    </div>
+          </td>
+          <td class="icon">
+            <a :href="itemLink(group, item)" target="_blank">
+              <i class="icon-external"/>
+            </a>
+          </td>
+          <td class="icon">
+            <a href="#" @click.prevent="removeItem(group, item)">
+              <i class="icon-remove"/>
+            </a>
+          </td>
+        </tr>
+      </template>
+    </table>
 
   </div>
 </template>
@@ -95,7 +108,22 @@ export default {
       const address = this.groupBy === 'token' ? item : group
       const tokenAddress = this.groupBy === 'token' ? group : item
       return `https://etherscan.io/token/${tokenAddress}?a=${address}`
-    }
+    },
+    removeItem(group, item) {
+      if (!confirm('Remove this account from your watchlist ?')) {
+        return
+      }
+      const address = this.groupBy === 'token' ? item : group
+      const tokenAddress = this.groupBy === 'token' ? group : item
+      this.$store.commit('WATCHLIST_REMOVE', {
+        address,
+        tokenAddress,
+      })
+      this.$store.commit('TX_ACCOUNT_REMOVE', {
+        address,
+        tokenAddress,
+      })
+    },
   },
 }
 </script>
@@ -106,7 +134,7 @@ export default {
   height: 32px;
   line-height: 32px;
   font-size: 13px;
-  margin: 0 0 20px;
+  margin: 0 5px 20px;
   &.empty {
     text-align: center;
     margin: 40px 0;
@@ -124,11 +152,38 @@ a.add {
     border-color: #f6a622;
   }
 }
-ul {
-  margin: 0;
-  padding: 10px 0 30px 25px;
-  a {
-    color: inherit;
+table {
+  td {
+    padding: 5px;
+  }
+  td.icon {
+    padding-left: 20px;
+    padding-right: 0px;
+    width: 10px;
+  }
+  &.grouped-by-address {
+    td.title {
+      padding: 25px 5px 10px;
+      color: #fff;
+      font-size: 16px;
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: bold;
+    }
+    td.name {
+      padding-right: 20px;
+    }
+  }
+  &.grouped-by-token {
+    td.title {
+      padding: 15px 5px 10px;
+      color: #fff;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    td.name {
+      font-family: 'Courier New', Courier, monospace;
+      padding-right: 20px;
+    }
   }
 }
 </style>

@@ -11,6 +11,18 @@
       "css": "search",
       "code": 59392,
       "src": "fontawesome"
+    },
+    {
+      "uid": "fd32deda7b2f5b8cad46d13897c19ae8",
+      "css": "remove",
+      "code": 59393,
+      "src": "elusive"
+    },
+    {
+      "uid": "e35de5ea31cd56970498e33efbcb8e36",
+      "css": "external",
+      "code": 61772,
+      "src": "fontawesome"
     }
   ]
 }

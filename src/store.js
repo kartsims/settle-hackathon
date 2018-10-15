@@ -28,11 +28,26 @@ export default new Vuex.Store({
       state.watchList.push(payload)
       store.set('watchList', state.watchList)
     },
+    WATCHLIST_REMOVE (state, payload) {
+      const index = state.watchList.findIndex(i => {
+        return i.tokenAddress === payload.tokenAddress && i.address === payload.address
+      })
+      if (index !== -1) {
+        state.watchList.splice(index, 1)
+        store.set('watchList', state.watchList)
+      }
+    },
     TX_ACCOUNT_SET (state, payload) {
       state.txs = state.txs.filter(tx => {
         return tx.tokenAddress !== payload.tokenAddress || tx.address !== payload.address
       }).concat(payload.txs).sort((a, b) => {
         return a.timestamp < b.timestamp ? 1 : -1
+      })
+      store.set('txs', state.txs)
+    },
+    TX_ACCOUNT_REMOVE (state, payload) {
+      state.txs = state.txs.filter(tx => {
+        return tx.tokenAddress !== payload.tokenAddress || tx.address !== payload.address
       })
       store.set('txs', state.txs)
     },
