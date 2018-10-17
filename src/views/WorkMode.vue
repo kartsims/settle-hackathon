@@ -15,6 +15,9 @@
         <router-link to="/work" class="tab">
           Transactions
         </router-link>
+        <router-link to="/work/charts" class="tab">
+          Chart
+        </router-link>
         <router-link to="/work/accounts" class="tab">
           Watchlist
         </router-link>

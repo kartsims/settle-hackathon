@@ -6,6 +6,7 @@ import Home from './views/Home.vue'
 import WorkMode from './views/WorkMode.vue'
 import WorkAccounts from './views/Work/Accounts.vue'
 import WorkAdd from './views/Work/Add.vue'
+import WorkCharts from './views/Work/Charts.vue'
 import WorkTx from './views/Work/Tx.vue'
 
 Vue.use(Router)
@@ -31,6 +32,10 @@ export default new Router({
         {
           path: 'accounts',
           component: WorkAccounts
+        },
+        {
+          path: 'charts',
+          component: WorkCharts
         },
         {
           path: 'add',
