@@ -1,20 +1,30 @@
 <template>
   <div>
 
-    <select v-model="tokenAddress">
-      <option :value="null">All tokens</option>
-      <option 
-        v-for="token in tokens" 
-        :key="token.ticker"
-        :value="token.address"
-      >
-        {{ token.name }}
-      </option>
-    </select>
-    <pre>{{tokenAddress}}</pre>
-    <!-- TODO : refresh chart when token address is changed -->
+    <div class="filters">
+      <select v-model="tokenAddress">
+        <option :value="null">All tokens</option>
+        <option 
+          v-for="token in tokens" 
+          :key="token.ticker"
+          :value="token.address"
+        >
+          {{ token.name }}
+        </option>
+      </select>
+    </div>
+
+    <h3 v-if="token">
+      {{ token.name }} ({{ token.ticker }})
+    </h3>
+
+    <div class="total">
+      Total over the last {{ configTxHistoryDays }} days :
+      {{ totalIn }} / {{ totalOut }}
+    </div>
 
     <Chart
+      :height="200"
       :labels="labels"
       :inValues="inValues"
       :outValues="outValues"
@@ -27,6 +37,7 @@
 import moment from 'moment'
 import { mapGetters, mapState } from 'vuex'
 import config from '../../../config.json'
+import displayAmount from '@/utils/displayAmount'
 
 import Chart from '@/components/Chart.vue'
 
@@ -36,6 +47,7 @@ export default {
   },
   data () {
     return {
+      configTxHistoryDays: config.txHistoryDays,
       tokenAddress: null,
     }
   },
@@ -91,6 +103,34 @@ export default {
     outValues () {
       return Object.keys(this.values).map(date => -this.values[date].out)
     },
+    token () {
+      if (!this.tokenAddress) {
+        return null
+      }
+      return this.getToken(this.tokenAddress)
+    },
+    totalIn () {
+      return displayAmount(this.inValues.reduce((total, value) => total + value, 0))
+    },
+    totalOut () {
+      return displayAmount(this.outValues.reduce((total, value) => total + value, 0))
+    },
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.filters {
+  padding-bottom: 20px;
+  text-align: right;
+}
+h3 {
+  padding: 0 0 30px;
+}
+.total {
+  font-size: 12px;
+  position: relative;
+  top: -20px;
+  opacity: .5;
+}
+</style>
