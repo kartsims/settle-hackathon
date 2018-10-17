@@ -48,7 +48,7 @@
 https://ethereum.stackexchange.com/questions/28561/how-to-query-token-transfers-like-etherscan-io
 */
 import { mapGetters, mapState } from 'vuex'
-import config from '../../../config.json'
+import config from '../../config.json'
 
 import TxList from '@/components/TxList.vue'
 import TxLoading from '@/components/TxLoading.vue'

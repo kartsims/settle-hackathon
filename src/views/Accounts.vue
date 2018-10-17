@@ -19,7 +19,7 @@
         No account watched yet
         <br/>
         <br/>
-        <router-link to="/work/add" class="add">Add an account</router-link>
+        <router-link to="/add" class="add">Add an account</router-link>
       </span>
 
     </div>

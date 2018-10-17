@@ -76,7 +76,7 @@ export default {
         address,
         tokenAddress: this.token.address,
       })
-      this.$router.push('/work/accounts')
+      this.$router.push('/accounts')
     },
   },
   watch: {

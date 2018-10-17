@@ -36,7 +36,7 @@
 <script>
 import moment from 'moment'
 import { mapGetters, mapState } from 'vuex'
-import config from '../../../config.json'
+import config from '../../config.json'
 import displayAmount from '@/utils/displayAmount'
 
 import Chart from '@/components/Chart.vue'
