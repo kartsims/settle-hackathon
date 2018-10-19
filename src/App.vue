@@ -63,6 +63,7 @@ h1 {
   margin: 15px 0;
   height: 50px;
   position: relative;
+
   .tab {
     display: inline-block;
     height: 36px;
@@ -99,5 +100,35 @@ h1 {
 }
 .content {
   padding: 0 10px 20px;
+}
+
+@media (max-width: 640px) {
+  .menu {
+    display: block;
+  }
+  h1 {
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .tabs {
+    display: none;
+    .tab {
+      height: 24px;
+      line-height: 24px;
+      padding: 0 5px;
+      margin: 0 10px 0 0;
+      font-size: 11px;
+      &.chart {
+        display: none;
+      }
+    }
+    .button {
+      margin-right: 10px;
+      width: 18px;
+      height: 18px;
+      line-height: 18px;
+    }
+  }
 }
 </style>
