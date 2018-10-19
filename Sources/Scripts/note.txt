@@ -1,0 +1,7 @@
+Don't remove initialize, build, publish and test scripts
+
+'settle-apps-initialize.sh' script is executed first before any other deployment process, can be used to install dependencies and other requirements for build process
+'settle-apps-build.sh' script is executed after 'settle-apps-initialize.sh' and can be used for other custom deployment execution
+'settle-apps-publish.sh' script is executed after 'settle-apps-build.sh', can be used for execution of unit-tests on built projects
+'settle-apps-test.sh' is executed after your application is live and deployed
+
